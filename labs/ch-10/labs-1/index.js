@@ -2,8 +2,12 @@
 const assert = require('assert')
 
 function parseUrl (str) {
-  const parsed = new URL(str)
-  return parsed
+  try {
+    const parsed = new URL(str)
+    return parsed
+  } catch (error) {
+    return null
+  }  
 }
 
 assert.doesNotThrow(() => { parseUrl('invalid-url') })
@@ -13,3 +17,6 @@ assert.deepEqual(
   new URL('http://example.com')
 )
 console.log('passed!')
+
+parseUrl('http://google.com');
+parseUrl('foo');

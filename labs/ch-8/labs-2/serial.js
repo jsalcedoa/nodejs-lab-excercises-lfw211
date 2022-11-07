@@ -23,3 +23,15 @@ const opC = (cb) => {
     cb(null, 'C')
   }, 125)
 }
+
+const promA = promisify(opA);
+const promB = promisify(opB);
+const promC = promisify(opC);
+
+const runProms = async () => {
+  print(await promA());
+  print(await promB());
+  print(await promC());
+}
+
+runProms().catch(console.error);

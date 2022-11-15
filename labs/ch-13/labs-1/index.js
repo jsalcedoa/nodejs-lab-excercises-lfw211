@@ -3,6 +3,8 @@ const assert = require('assert')
 const { join, basename } = require('path')
 const fs = require('fs')
 const project = join(__dirname, 'project')
+const { readdirSync } = require('fs');
+
 try { fs.rmdirSync(project, {recursive: true}) } catch (err) {}
 const files = Array.from(Array(5), () => {
   return join(project, Math.random().toString(36).slice(2))
@@ -16,6 +18,9 @@ const out = join(__dirname, 'out.txt')
 function exercise () {
   // TODO read the files in the project folder
   // and write the to the out.txt file
+  const fileNames = readdirSync(project).toString();
+  // console.log(fileNames);
+  fs.writeFileSync(out, fileNames)
 }
 
 exercise()

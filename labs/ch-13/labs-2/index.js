@@ -2,6 +2,7 @@
 const assert = require('assert')
 const { join } = require('path')
 const fs = require('fs')
+const { readdirSync } = require('fs')
 const { promisify } = require('util')
 const timeout = promisify(setTimeout)
 const project = join(__dirname, 'project')
@@ -51,7 +52,14 @@ function exercise (project) {
       // TODO - only set the answer variable if the filepath
       // is both newly created AND does not point to a directory
 
-      answer = filepath
+      const { birthtimeMs, ctimeMs } = stat;
+      if (!stat.isDirectory() && birthtimeMs === ctimeMs) {
+        answer = filepath
+        
+        birthtimeMs
+      }
+
+      console.log(filename, stat.isDirectory(), birthtimeMs, ctimeMs);
     } catch (err) {
 
     } 

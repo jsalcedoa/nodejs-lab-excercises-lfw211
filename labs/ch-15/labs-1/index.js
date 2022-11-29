@@ -17,4 +17,6 @@ function exercise (myEnvVar) {
   })
 }
 
+console.log('Exec path: ', process.execPath);
+
 module.exports = exercise
